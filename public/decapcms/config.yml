@@ -9,7 +9,7 @@ collections:
   - name: 'post'
     label: 'Post'
     folder: 'src/content/post'
-    create: true
+    create: false
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Excerpt', name: 'excerpt', widget: 'string' }
