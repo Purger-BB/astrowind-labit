@@ -1,29 +1,65 @@
-backend:
-  name: git-gateway
-  branch: main
+site:
+  name: 'Lab IT WEB'
+  site: 'https://lab-it.hr'
+  base: '/' # Change this if you need to deploy to Github Pages, for example
+  trailingSlash: false # Generate permalinks with or without "/" at the end
 
-media_folder: 'src/assets/images'
-public_folder: '/_astro'
+  googleSiteVerificationId: false # Or some value,
 
-collections:
-  - name: 'post'
-    label: 'Post'
-    folder: 'src/content/post'
-    create: false
-    fields:
-      - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Excerpt', name: 'excerpt', widget: 'string' }
-      - { label: 'Category', name: 'category', widget: 'string' }
-      - {
-          label: 'Tags',
-          name: 'tags',
-          widget: 'list',
-          allow_add: true,
-          allow_delete: true,
-          collapsed: false,
-          field: { label: 'Tag', name: 'tag', widget: 'string' },
-        }
-      - { label: 'Image', name: 'image', widget: 'string' }
-      - { label: 'Publish Date', name: 'publishDate', widget: 'datetime', required: false }
-      - { label: 'Author', name: 'author', widget: 'string' }
-      - { label: 'Content', name: 'body', widget: 'markdown' }
+# Default SEO metadata
+metadata:
+  title:
+    default: 'Example'
+    template: '%s — Example'
+  description: 'This is the default meta description of Example website'
+  robots:
+    index: true
+    follow: true
+  openGraph:
+    site_name: 'Example'
+    images:
+      - url: '~/assets/images/default.jpg'
+        width: 1200
+        height: 628
+    type: website
+  twitter:
+    handle: '@twitter_user'
+    site: '@twitter_user'
+    cardType: summary_large_image
+
+i18n:
+  language: en
+  textDirection: ltr
+
+apps:
+  blog:
+    isEnabled: false
+    postsPerPage: 6
+
+    post:
+      isEnabled: false
+      permalink: '/blog/%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
+      robots:
+        index: true
+
+    list:
+      isEnabled: false
+      pathname: 'blog' # Blog main path, you can change this to "articles" (/articles)
+      robots:
+        index: true
+
+    category:
+      isEnabled: false
+      pathname: 'category' # Category main path /category/some-category, you can change this to "group" (/group/some-category)
+      robots:
+        index: true
+
+    tag:
+      isEnabled: false
+      pathname: 'tag' # Tag main path /tag/some-tag, you can change this to "topics" (/topics/some-category)
+      robots:
+        index: false
+
+
+ui:
+  theme: 'dark' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
